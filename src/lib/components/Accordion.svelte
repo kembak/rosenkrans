@@ -1,4 +1,6 @@
 <script>
+	import { slide } from 'svelte/transition';
+
 	let { items = [], allowMultiple = true, initiallyOpen = [] } = $props();
 	let openIds = $state([]);
 	let initialized = false;
@@ -45,16 +47,21 @@
 				onclick={() => toggle(item.id)}
 			>
 				<span class="title-block">
-					<span class="title">{item.title}</span>
+					<h3 class="title">{item.title}</h3>
 					{#if item.meta}
 						<span class="meta">{item.meta}</span>
 					{/if}
 				</span>
-				<span class="icon" aria-hidden="true">{isOpen(item.id) ? '-' : '+'}</span>
+
+				<span class="icon" class:open={isOpen(item.id)} aria-hidden="true">
+					<svg viewBox="0 0 24 24" focusable="false">
+						<path d="M6 9l6 6 6-6" />
+					</svg>
+				</span>
 			</button>
 
 			{#if isOpen(item.id)}
-				<div class="panel-body">
+				<div class="panel-body" in:slide={{ duration: 140 }} out:slide={{ duration: 110 }}>
 					{#if item.summary}
 						<p class="summary">{item.summary}</p>
 					{/if}
@@ -106,19 +113,19 @@
 	}
 
 	.panel {
-		border: 1px solid var(--line);
-		background: var(--surface);
-		border-radius: 0.8rem;
-		overflow: hidden;
-		box-shadow: var(--soft-shadow);
+		border: 0;
+		background: transparent;
+		border-radius: 0;
+		overflow: visible;
+		box-shadow: none;
 	}
 
 	.panel-toggle {
 		width: 100%;
-		padding: 0.85rem 1rem;
+		padding: 0.5rem 0.15rem;
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
+		align-items: flex-start;
 		gap: 0.75rem;
 		background: transparent;
 		border: 0;
@@ -130,10 +137,15 @@
 	.title-block {
 		display: grid;
 		gap: 0.2rem;
+		flex: 1;
 	}
 
 	.title {
-		font-weight: 600;
+		margin: 0;
+		font-size: 1.25rem;
+		font-weight: 400;
+		border-bottom: 1.5px solid color-mix(in srgb, var(--accent), white 18%);
+		padding-bottom: 0.2rem;
 	}
 
 	.meta {
@@ -142,13 +154,37 @@
 	}
 
 	.icon {
-		font-size: 1.25rem;
+		flex: 0 0 1.25rem;
 		width: 1.25rem;
-		text-align: center;
+		height: 1.25rem;
+		display: grid;
+		place-items: center;
+		color: var(--ink-soft);
+		transition: transform 130ms ease, color 130ms ease;
+		transform-origin: 50% 50%;
+	}
+
+	.icon svg {
+		width: 1.1rem;
+		height: 1.1rem;
+		display: block;
+	}
+
+	.icon path {
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 1.8;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+
+	.icon.open {
+		transform: rotate(180deg);
+		color: var(--accent);
 	}
 
 	.panel-body {
-		padding: 0 1rem 1rem;
+		padding: 0.15rem 0.2rem 0.95rem;
 		display: grid;
 		gap: 0.75rem;
 	}
@@ -176,15 +212,15 @@
 	}
 
 	details {
-		border: 1px solid color-mix(in srgb, var(--line), transparent 30%);
-		border-radius: 0.65rem;
-		padding: 0.55rem 0.75rem;
-		background: color-mix(in srgb, var(--surface), white 18%);
+		border: 0;
+		border-radius: 0;
+		padding: 0.55rem 0.1rem;
+		background: transparent;
 	}
 
 	summary {
 		cursor: pointer;
-		font-weight: 600;
+		font-weight: 500;
 	}
 
 	.reference {

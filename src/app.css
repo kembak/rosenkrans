@@ -1,14 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&display=swap');
+
 :root {
-	font-family:
-		'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Times New Roman', serif;
-	--ink: #1d2a24;
-	--ink-soft: #2f4a40;
-	--surface: #cfe9ff;
-	--line: #8eb6df;
-	--accent: #a18bcf;
-	--accent-soft: #ddd3f8;
+	font-family: 'Lora', Georgia, 'Times New Roman', serif;
+	--ink: #1f3228;
+	--ink-soft: #345044;
+	--surface: #dceffd;
+	--line: #9ec7ea;
+	--accent: #b49cdf;
+	--accent-soft: #e3d9fa;
 	--soft-shadow: none;
-	background-color: #c8f1c8;
+	background-color: #def8d9;
 	color: var(--ink);
 }
 
@@ -26,23 +27,26 @@ body {
 }
 
 body {
-	background:
-		radial-gradient(circle at 14% 12%, #dff3ff 0%, transparent 31%),
-		radial-gradient(circle at 85% 8%, #e8dffd 0%, transparent 32%),
-		radial-gradient(circle at 78% 84%, #c8e9ff 0%, transparent 35%),
-		linear-gradient(180deg, #c8f1c8 0%, #cef5d0 45%, #d9f7d1 100%);
+	background: #def8d9;
 	color: var(--ink);
 }
 
-h1,
+h1 {
+	margin: 0;
+	line-height: 1;
+	font-weight: 400;
+}
 h2,
 h3 {
+	font-family: 'Baskerville Old Face', Baskerville, 'Palatino Linotype', serif;
 	margin: 0;
 	line-height: 1.2;
 	letter-spacing: 0.01em;
+	font-weight: 400;
 }
 
 p {
+	font-size: 1rem;
 	margin: 0;
 	line-height: 1.55;
 	color: var(--ink-soft);

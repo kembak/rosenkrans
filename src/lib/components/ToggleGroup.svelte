@@ -23,7 +23,6 @@
 			onclick={() => toggle(option.id)}
 		>
 			<span>{option.label}</span>
-			<small>{option.description}</small>
 		</button>
 	{/each}
 </div>
@@ -46,11 +45,7 @@
 		color: inherit;
 		font: inherit;
 		cursor: pointer;
-		transition: border-color 140ms ease, transform 140ms ease, background-color 140ms ease;
-	}
-
-	button:hover {
-		transform: translateY(-1px);
+		transition: border-color 120ms ease, background-color 120ms ease;
 	}
 
 	button.selected {
@@ -61,11 +56,6 @@
 	span {
 		font-size: 0.95rem;
 		font-weight: 600;
-	}
-
-	small {
-		font-size: 0.77rem;
-		opacity: 0.8;
 	}
 
 	@media (min-width: 48rem) {

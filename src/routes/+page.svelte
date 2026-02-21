@@ -91,8 +91,8 @@
 				<h2>Rekkefølge</h2>
 				<p class="section-intro">{rosaryContent.guidance}</p>
 				<div class="sequence-layout">
-					<img src={rosaryIllustration} alt="Rosenkransens oppbygning" loading="lazy" />
 					<Accordion items={sequenceItems} initiallyOpen={sequenceInitiallyOpen} />
+					<img src={rosaryIllustration} alt="Rosenkransens oppbygning" loading="lazy" />
 				</div>
 			</section>
 		{/if}
@@ -120,7 +120,7 @@
 
 <style>
 	.page {
-		width: min(70rem, 100% - 1.5rem);
+		width: min(48rem, 100% - 1.5rem);
 		margin: 1.15rem auto 2.5rem;
 		display: grid;
 		gap: 1.5rem;
@@ -133,18 +133,22 @@
 	}
 
 	.eyebrow {
-		font-size: 0.82rem;
+		font-size: 0.84rem;
 		text-transform: uppercase;
 		letter-spacing: 0.11em;
 		color: var(--accent);
 	}
 
 	h1 {
-		font-size: clamp(2rem, 6vw, 3.2rem);
+		font-family: 'Baskerville Old Face', Baskerville, 'Palatino Linotype', serif;
+		font-size: clamp(2.25rem, 8vw, 4rem);
+		border-bottom: 2px solid color-mix(in srgb, var(--accent), white 20%);
+		padding-bottom: 0.45rem;
 	}
 
 	.subheader {
-		font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+		font-family: 'Baskerville Old Face', Baskerville, 'Palatino Linotype', serif;
+		font-size: clamp(1.08rem, 2.6vw, 1.35rem);
 		color: var(--ink);
 	}
 
@@ -154,10 +158,11 @@
 
 	.hero-image {
 		justify-self: center;
+		padding-top: 0.7rem;
 	}
 
 	.hero-image img {
-		width: min(100%, 20rem);
+		width: min(100%, 22rem);
 		height: auto;
 		display: block;
 	}
@@ -169,6 +174,14 @@
 		gap: 0.75rem;
 	}
 
+	.about h2,
+	.controls h2,
+	.main-content h2 {
+		font-size: 2rem;
+		border-bottom: 1.5px solid color-mix(in srgb, var(--accent), white 18%);
+		padding-bottom: 0.3rem;
+	}
+
 	.about-text {
 		display: grid;
 		gap: 0.65rem;
@@ -178,14 +191,9 @@
 		padding: 0.2rem 0;
 	}
 
-	.controls h2,
-	.main-content h2 {
-		font-size: 1.35rem;
-	}
-
 	.main-content {
 		display: grid;
-		gap: 1.65rem;
+		gap: 1.75rem;
 	}
 
 	.section-intro {
@@ -199,7 +207,7 @@
 	}
 
 	.sequence-layout img {
-		width: min(100%, 12rem);
+		width: min(100%, 15rem);
 		height: auto;
 		display: block;
 		justify-self: center;
@@ -212,25 +220,10 @@
 		padding-left: 0.2rem;
 	}
 
-	:global(.panel) {
-		border: 0;
-		border-radius: 0;
-		box-shadow: none;
-		background: color-mix(in srgb, var(--surface), transparent 30%);
-	}
-
-	:global(.panel-toggle) {
-		padding-inline: 0.75rem;
-	}
-
-	:global(.panel-body) {
-		padding-inline: 0.75rem;
-	}
-
 	@media (min-width: 60rem) {
 		.page {
 			margin-top: 1.45rem;
-			gap: 1.8rem;
+			gap: 1.9rem;
 		}
 
 		.hero {
@@ -238,12 +231,13 @@
 		}
 
 		.sequence-layout {
-			grid-template-columns: 13rem minmax(0, 1fr);
-			gap: 1.25rem;
+			grid-template-columns: minmax(0, 1fr) 17rem;
+			gap: 1.35rem;
 		}
 
 		.sequence-layout img {
-			justify-self: start;
+			width: min(100%, 17rem);
+			justify-self: end;
 		}
 	}
 </style>
