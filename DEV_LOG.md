@@ -1,0 +1,47 @@
+# DEV LOG
+
+- Initialized a vanilla JavaScript SvelteKit project in this folder (minimal template, no TypeScript).
+- Added core project files from scaffold: `src/`, `static/`, `package.json`, `svelte.config.js`, `vite.config.js`, `jsconfig.json`, `.npmrc`.
+- Switched deployment adapter from auto to Vercel in `svelte.config.js`.
+- Set explicit Vercel runtime to `nodejs22.x` for environment compatibility.
+- Kept `+layout.js` prerender enabled to avoid local Windows symlink issues during Vercel output generation.
+- Updated npm scripts and dependency versions to a compatible set for local Node environment and Vercel build.
+- Added/updated `.gitignore` for SvelteKit/Vercel/Node output and local artifacts.
+- Replaced default placeholder page with a full content-driven main page structure.
+- Built a parser/data layer in `src/lib/content/rosaryContent.js` that reads `rosenkransen.md` and generates structured content instead of rendering raw markdown.
+- Added reusable UI components:
+- `src/lib/components/Accordion.svelte`
+- `src/lib/components/ToggleGroup.svelte`
+- `src/lib/components/StatueVisual.svelte` (initially added, later removed from page usage per revised requirements).
+- Added global stylesheet `src/app.css` and wired it via `+layout.svelte`.
+- Added page metadata and language configuration for Norwegian content.
+- Created mobile-first section layout for `Rekkefølge`, `Bønner`, and `Mysterier` with toggle controls.
+- Fixed missing content parsing issues so first blocks (for example `Introduksjon` and `Gledens mysterier`) are included correctly.
+- Fixed accordion interaction issues and open-state handling.
+- Updated section visibility behavior so all sections can be hidden if all toggle buttons are deselected.
+- Removed compact-mode checkbox and related logic when requested.
+- Changed default open behavior:
+- `Rekkefølge`: all steps initially open.
+- `Bønner`: all prayers initially open.
+- `Mysterier`: kept default behavior.
+- Reworked header to include traditional title/subheader plus right-side image (`virginmary2.png`).
+- Added rosary illustration (`rosaryillustration-2.png`) in the `Rekkefølge` section and later moved it to the right with larger sizing.
+- Removed decorative scrolling Mary/cross visual element from active page layout based on updated brief.
+- Iterated visual theme from bordered cards to flat/unbordered minimalist sections.
+- Updated color direction to light pastel green base with lavender and pastel sky-blue accents.
+- Simplified background from gradient to flat pastel green.
+- Added section heading underlines for section separation instead of boxed borders.
+- Reduced main content width multiple times (latest: approximately 20% narrower from prior width).
+- Updated typography split:
+- Headings/subheading forced to Baskerville-style (`Baskerville Old Face` fallback stack).
+- Body text set to `Lora` with Google Fonts import for consistency.
+- Refined accordion trigger styling:
+- Unbordered transparent button style.
+- Title text rendered as underlined `h3`.
+- Replaced text `+/-` indicators with anchored SVG chevron icon.
+- Added quick/smooth accordion animations (icon rotation + content slide transition).
+- Simplified toggle-group buttons:
+- Removed hover motion transform.
+- Removed subtitle (`<small>`) text.
+- Updated README with local setup, build steps, Vercel deployment notes, and edit points for content/design.
+- Repeatedly validated with `npm run build` after each major iteration to ensure deploy-ready output.
